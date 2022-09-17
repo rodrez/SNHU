@@ -97,7 +97,7 @@ public class Contact {
   }
 
   // Simplify the code above by using the constructor below
-  Contact(String id, String firstName, String lastName, String phone, String address) {
+  public Contact(String id, String firstName, String lastName, String phone, String address) {
     setContactId(id);
     setFirstName(firstName);
     setLastName(lastName);

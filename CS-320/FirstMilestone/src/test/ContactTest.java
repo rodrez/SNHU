@@ -1,6 +1,9 @@
 package test;
 
 import Contact.Contact;
+import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ContactClassTest {
@@ -21,7 +24,7 @@ class ContactClassTest {
     }
 
     @Test
-    void testContactClassFieldTooLong() {
+    public void testContactClassFieldTooLong() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new Contact("Fabiannnnnn", lastName, phone, address, id);
         });
