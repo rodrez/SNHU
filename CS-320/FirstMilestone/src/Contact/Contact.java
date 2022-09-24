@@ -1,5 +1,7 @@
 package Contact;
 
+import java.util.UUID;
+
 public class Contact {
   private String firstName;
   private String lastName;
@@ -54,17 +56,9 @@ public class Contact {
 
   }
 
-  protected void setPhoneNumber(String phone) {
+  protected void setPhone(String phone) {
     String regex = "[\\d]+"; // Only digits
-
-    // Check if phone number is valid
-    if (phone == null) {
-      throw new IllegalArgumentException("Phone number must not be empty.");
-    } else if (phone.length() != GENERAL_LENGTH) { // Check if phone number is 10 digits
-      throw new IllegalArgumentException(
-          "Phone number length must not exceed " +
-              GENERAL_LENGTH + " digits."); // Throw exception if phone number is not 10 digits
-    } else if (!phone.matches(regex)) { // Check if phone number is only digits
+   if (!phone.matches(regex)) { // Check if phone number is only digits
       throw new IllegalArgumentException( // Throw exception if phone number is not only digits
           "Please enter a valid phone number. Only digits are allowed.");
     }
@@ -85,24 +79,20 @@ public class Contact {
 
   }
 
-  protected void setContactId(String contactId) {
-    if (contactId == null) { // Check if contact ID is null
-      throw new IllegalArgumentException("Contact ID must not be empty"); // Throw exception if contact ID is null
-    } else if (contactId.length() > GENERAL_LENGTH) { // Check if contact ID is too long
-      throw new IllegalArgumentException("Contact ID must not be longer than " + // Throw exception if contact ID is too
-      // long
-          GENERAL_LENGTH + " characters");
-    }
-    this.id = contactId; // Set contact ID
+  protected void setUniqueId() {
+    String uuid = UUID.randomUUID().toString(); // Set contact ID
+    this.id = uuid.substring(uuid.length() - 16);
   }
 
   // Simplify the code above by using the constructor below
-  public Contact(String id, String firstName, String lastName, String phone, String address) {
-    setContactId(id);
+  public Contact(String firstName, String lastName, String phone, String address) {
+    setUniqueId();
     setFirstName(firstName);
     setLastName(lastName);
-    setPhoneNumber(phone);
+    setPhone(phone);
     setAddress(address);
+
+    System.out.printf("%s",this.toString());
   }
 
   @Override

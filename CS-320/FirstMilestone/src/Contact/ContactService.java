@@ -3,77 +3,83 @@ package Contact;
 import java.util.ArrayList;
 
 public class ContactService {
-//will contain our list of contacts
-
+    // Holds the list of contacts
     private final ArrayList<Contact> contacts;
 
     public ContactService() {
-//beginning call for the array list
+        // Initialize the array list
         contacts = new ArrayList<>();
     }
 
-    //need to have an add contact, remove contact and update contact feature
-//set add contact to have all values
+    // Method to add contact
     public boolean addContact(Contact contact) {
-        boolean contactAlready = false;
-//run through all the contacts in the list made
-        for (Contact contactList : contacts) {
-//test to see if already a contact
-//if so make contactAlready true
-            if (contactList.equals(contact)) {
-                contactAlready = true;
+        boolean isInArray = false;
+        // Loops through all the contacts
+        for (Contact contactObject : contacts) {
+            // Checks if the contact object is in the array
+            if (contactObject.equals(contact)) {
+                isInArray = true;
                 break;
             }
         }
-//if not a contact add it as one
-        if (!contactAlready) {
+        // If the contact is not in the array, add it
+        if (!isInArray) {
             contacts.add(contact);
-//after adding is now true
+            // Returns true if the contact was added successfully
             return true;
-        } else {
-            return false;
         }
+        // Returns false if the contact was not added successfully
+        return false;
+
     }
 
-    //delete needed via contactID
-    public boolean deleteContact(String contactID) {
-//run through list of contacts
-        for (Contact contactList : contacts) {
-//if equals to contactID will remove and return
-            if (contactList.getContactID().equals(contactID)) {
-//remove and return true
-                contacts.remove(contactList);
-                return true;
+    // Method to find the contact by id
+    public Contact getContact(String id) {
+        for (Contact contactObject : contacts) {
+            // Checks if there is a contact with that id
+            if (contactObject.getID().equals(id)) {
+                return contactObject;
             }
         }
-//else return false
+        return null;
+    }
+
+    // Method to delete a contact by id
+    public boolean deleteContact(String id) {
+        Contact contact = getContact(id);
+        if (contact != null) {
+            contacts.remove(contact);
+            return true;
+        }
+        ;
         return false;
     }
 
-    //update is trickiest due to needing to make sure still fits parameters
-//nothing means no change
-    public boolean updateContact(String contactID, String firstName, String lastName, String phoneNumber, String address) {
-//run through loop again
-        for (Contact contactList : contacts) {
-//if contactID matches, run through each with making sure not "" and meets requirements
-//then return true as it did equal update.
-            if (contactList.getID().equals(contactID)) {
-                if (!firstName.equals("") && !(firstName.length() > 10)) {
-                    contactList.setFirstName(firstName);
-                }
-                if (!lastName.equals("") && !(lastName.length() > 10)) {
-                    contactList.setFirstName(lastName);
-                }
-                if (!phone.equals("") && (phoneNumber.length() == 10)) {
-                    contactList.setFirstName(phoneNumber);
-                }
-                if (!address.equals("") && !(address.length() > 30)) {
-                    contactList.setFirstName(address);
-                }
-                return true;
-            }
+    // Method to validate the field is not null or exceeds the length
+    public boolean isValid(String field, int maxLength) {
+        return !(field.equals("") || field.length() > maxLength);
+    }
+
+    // Method to update and check the validity of the fields
+    public boolean updateContact(String id, String firstName, String lastName, String phone, String address) {
+
+        // Gets the contact
+        Contact contact = getContact(id);
+
+        if (
+            isValid(lastName, 10) &&
+            isValid(firstName, 10) &&
+            phone.length() == 10 &&
+            isValid(address, 30)) {
+            contact.setFirstName(firstName);
+            contact.setLastName(lastName);
+            contact.setPhone(phone);
+            contact.setAddress(address);
+            return true;
         }
-//else return false
+
+
         return false;
     }
+
 }
