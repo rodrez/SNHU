@@ -13,7 +13,7 @@ public class AppointmentService {
     }
 
     // Method to add a appt 
-    public void addAppointment(Appointment appointment) {
+    public boolean addAppointment(Appointment appointment) {
         boolean isInArray = false;
         // Loops through all the appt 
         for (Appointment appointmentObject : appointments ) {
@@ -27,15 +27,17 @@ public class AppointmentService {
         if (!isInArray) {
             appointments.add(appointment);
             // Returns true if the appt was added successfully
+            return true;
         }
         // Returns false if the appt was not added successfully
+        return false;
 
     }
 
     // Method to find the appt by id
     public Appointment getAppointment(String id) {
         for (Appointment appointmentObject : appointments) {
-            // Checks if there is an appt with that id
+            // Checks if there is a appt with that id
             if (appointmentObject.getID().equals(id)) {
                 return appointmentObject;
             }
@@ -43,16 +45,20 @@ public class AppointmentService {
         return null;
     }
 
-    // Method to delete an appt by id
+    // Method to delete a appt by id
     public boolean deleteAppointment(String id) {
-        for (Appointment appointmentObject : appointments) {
-            // Checks if there is a appt with that id
-            if (appointmentObject.getID().equals(id)) {
-                appointments.remove(appointmentObject);
-                return true;
-            }
+        Appointment appointment = getAppointment(id);
+        if (appointment != null) {
+            appointment.remove(appointment);
+            return true;
         }
+        ;
         return false;
+    }
+
+    // Method to validate the field is not null or exceeds the length
+    public boolean isValid(String field, int maxLength) {
+        return !(field.equals("") || field.length() > maxLength);
     }
 
 }

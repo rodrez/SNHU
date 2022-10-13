@@ -3,7 +3,7 @@ package test;
 import Contact.Contact;
 import org.junit.jupiter.api.Test;
 
-class ContactClassTest {
+class ContactTest {
 
     static final String firstName = "Fabian";
     static final String lastName = "Rodriguez";
