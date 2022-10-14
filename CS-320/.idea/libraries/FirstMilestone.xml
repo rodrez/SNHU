@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="FirstMilestone">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/FirstMilestone.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

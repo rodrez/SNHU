@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteTargetsManager">
+    <targets>
+      <target name="WSL - Ubuntu" type="wsl" uuid="da708196-a116-4e11-a41b-1ded1cff548c">
+        <config>
+          <option name="distributionMsId" value="Ubuntu" />
+          <option name="projectRootOnTarget" value="/mnt/c/Users/fjrod/AppData/Local/JetBrains/Toolbox/apps/IDEA-U/ch-0/222.4345.14/jbr/bin&#10;/CS-320" />
+        </config>
+        <ContributedStateBase type="JavaLanguageRuntime">
+          <config>
+            <option name="homePath" value="/home/rodrez/.jdks/openjdk-18.0.1.1/bin" />
+            <option name="javaVersionString" value="17.0.4" />
+          </config>
+        </ContributedStateBase>
+      </target>
+    </targets>
+  </component>
+</project>
