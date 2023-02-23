@@ -1,0 +1,17 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_cs320:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=aacuser
+      - MONGO_INITDB_ROOT_PASSWORD=0925
+      - MONGO_INITDB_DATABASE=AAC
+    command: mongod --auth
+
+volumes:
+  mongodb_cs320:
